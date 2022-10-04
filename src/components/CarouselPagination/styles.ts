@@ -32,7 +32,7 @@ export const Ball = styled.div<IContainerProps>`
     css`
       width: 2rem;
       animation-name: reducetime;
-      animation-duration: 0.2s;
+      animation-duration: 0.5s;
     `}
 
   @keyframes reducetime {

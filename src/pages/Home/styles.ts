@@ -61,6 +61,10 @@ export const RegisterNowText = styled.div`
   position: absolute;
   bottom: 0;
 
+  div {
+    margin-right: 0.25rem;
+  }
+
   .pink {
     color: #f56076;
     font-weight: 700;
