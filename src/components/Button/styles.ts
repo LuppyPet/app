@@ -17,7 +17,7 @@ export const ButtonContainer = styled.button<IContainerProps>`
   outline: none;
   border: none;
 
-  border-radius: 20px;
+  border-radius: 1rem;
 
   ${(props) =>
     props.isDisabled &&

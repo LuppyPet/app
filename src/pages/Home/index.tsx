@@ -1,9 +1,17 @@
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import LuppyLogo from '../../assets/LuppyLogo'
+import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 import { LeftLoginContainer } from '../../components/LeftLoginContainer'
-import { HomeContainer, LoginSide, TwoColoredText } from './styles'
+import {
+  // BottomText,
+  ForgotMyPasswordText,
+  HomeContainer,
+  LoginSide,
+  RegisterNowText,
+  TwoColoredText,
+} from './styles'
 
 interface IFormInputs {
   username: string
@@ -45,6 +53,7 @@ export function Home(): JSX.Element {
   }
 
   const subLogoText = 'Lorem ipsum dolor situm nobilis'
+
   return (
     <HomeContainer>
       <LeftLoginContainer
@@ -55,7 +64,7 @@ export function Home(): JSX.Element {
         setCurrentPage={setCurrentPage}
       />
       <LoginSide onSubmit={handleSubmit(onSubmit)}>
-        <LuppyLogo />
+        <LuppyLogo className="luppyLogo" />
         <TwoColoredText>
           <div className="firstHalf">
             {subLogoText.slice(0, Math.round(subLogoText.length / 2))}
@@ -90,6 +99,12 @@ export function Home(): JSX.Element {
           label="Senha"
           type="password"
         />
+        <ForgotMyPasswordText>Esqueci minha senha!</ForgotMyPasswordText>
+        <Button>Login</Button>
+        <RegisterNowText>
+          <div>Ainda não é cadastrado?</div>
+          <div className="blue">Comece agora</div>
+        </RegisterNowText>
       </LoginSide>
     </HomeContainer>
   )
