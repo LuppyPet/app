@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import * as AccessibleIcon from '@radix-ui/react-accessible-icon'
 import * as Label from '@radix-ui/react-label'
 import React, { useState } from 'react'
 import { UseFormRegisterReturn } from 'react-hook-form'
@@ -44,14 +43,14 @@ export const Input = ({
           onClick={() => setIsPasswordHidden(!isPasswordHidden)}
           tabIndex={0}
         >
-          <AccessibleIcon.AccessibleIcon
+          {/* <AccessibleIcon.AccessibleIcon
             label={isPasswordHidden ? 'Exibir senha' : 'Esconder senha'}
-          >
-            <img
-              alt={isPasswordHidden ? 'Exibir senha' : 'Esconder senha'}
-              className="eye-img"
-            />
-          </AccessibleIcon.AccessibleIcon>
+          > */}
+          <img
+            alt={isPasswordHidden ? 'Exibir senha' : 'Esconder senha'}
+            className="eye-img"
+          />
+          {/* </AccessibleIcon.AccessibleIcon> */}
         </button>
       )}
     </InputContainer>
