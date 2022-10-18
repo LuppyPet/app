@@ -6,6 +6,7 @@ interface IButtonProps {
   type?: 'button' | 'submit'
   children: ReactNode
   onClick?: (event: MouseEvent<HTMLElement>) => void
+  isPink: boolean
 }
 
 export const Button: React.FC<IButtonProps> = ({
@@ -13,11 +14,13 @@ export const Button: React.FC<IButtonProps> = ({
   type = 'button',
   children,
   onClick,
+  isPink,
 }): JSX.Element => (
   <ButtonContainer
     onClick={(event) => (onClick ? onClick(event) : null)}
     type={type}
     isDisabled={isDisabled}
+    isPink={isPink}
   >
     {children}
   </ButtonContainer>

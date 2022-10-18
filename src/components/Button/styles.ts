@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components'
 
 interface IContainerProps {
   isDisabled: boolean
+  isPink: boolean
 }
 
 export const ButtonContainer = styled.button<IContainerProps>`
@@ -12,7 +13,7 @@ export const ButtonContainer = styled.button<IContainerProps>`
   font-weight: bold;
   color: #fff;
 
-  background-color: #f56076;
+  background-color: ${(props) => (props.isPink ? '#f56076' : '#23b6e7')};
 
   outline: none;
   border: none;

@@ -64,46 +64,50 @@ export function Home(): JSX.Element {
         setCurrentPage={setCurrentPage}
       />
       <LoginSide onSubmit={handleSubmit(onSubmit)}>
-        <LuppyLogo className="luppyLogo" />
-        <TwoColoredText>
-          <div className="firstHalf">
-            {subLogoText.slice(0, Math.round(subLogoText.length / 2))}
+        <div>
+          <div className="luppyLogo">
+            <LuppyLogo />
           </div>
-          <div className="secondHalf">
-            {subLogoText.slice(
-              Math.round(subLogoText.length / 2),
-              subLogoText.length,
-            )}
-          </div>
-        </TwoColoredText>
-        <Input
-          registerField={{
-            ...register('username', {
-              maxLength: 50,
-              minLength: 5,
-              required: true,
-            }),
-          }}
-          name="username"
-          label="E-mail"
-        />
-        <Input
-          registerField={{
-            ...register('password', {
-              maxLength: 50,
-              minLength: 5,
-              required: true,
-            }),
-          }}
-          name="password"
-          label="Senha"
-          type="password"
-        />
-        <ForgotMyPasswordText>Esqueci minha senha!</ForgotMyPasswordText>
-        <Button>Login</Button>
-        <RegisterNowText>
-          <div>Ainda não é cadastrado?</div>
-          <div className="blue">Comece agora</div>
+          <TwoColoredText>
+            <h1 className="firstHalf">
+              {subLogoText.slice(0, Math.round(subLogoText.length / 2))}
+            </h1>
+            <h1 className="secondHalf">
+              {subLogoText.slice(
+                Math.round(subLogoText.length / 2),
+                subLogoText.length,
+              )}
+            </h1>
+          </TwoColoredText>
+          <Input
+            registerField={{
+              ...register('username', {
+                maxLength: 50,
+                minLength: 5,
+                required: true,
+              }),
+            }}
+            name="username"
+            label="E-mail"
+          />
+          <Input
+            registerField={{
+              ...register('password', {
+                maxLength: 50,
+                minLength: 5,
+                required: true,
+              }),
+            }}
+            name="password"
+            label="Senha"
+            type="password"
+          />
+          <ForgotMyPasswordText>Esqueci minha senha!</ForgotMyPasswordText>
+          <Button isPink>Login</Button>
+        </div>
+        <RegisterNowText isPink>
+          <span>Ainda não é cadastrado?</span>
+          <button className="blue">Comece agora</button>
         </RegisterNowText>
       </LoginSide>
     </HomeContainer>

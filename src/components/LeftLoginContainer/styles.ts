@@ -18,11 +18,7 @@ export const InnerColoredContainer = styled.div`
 
   justify-content: center;
   align-items: center;
-
-  width: 25rem;
 `
-
-export const SideTextContainer = styled.div``
 
 export const SideTitleStyle = styled.div`
   display: flex;

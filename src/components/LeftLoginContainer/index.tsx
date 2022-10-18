@@ -24,7 +24,7 @@ export const LeftLoginContainer: React.FC<ILeftLoginContainerProps> = ({
 }): JSX.Element => (
   <SideColoredContainer>
     <InnerColoredContainer>
-      <SittingLadyWithCat />
+      <SittingLadyWithCat className="sittingCat" />
       <SideTitleStyle>{title}</SideTitleStyle>
       <SubtitleStyle>{subTitle}</SubtitleStyle>
       <CarouselPagination

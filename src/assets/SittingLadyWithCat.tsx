@@ -2,13 +2,7 @@ import * as React from 'react'
 import { SVGProps } from 'react'
 
 const SittingLadyWithCat = (props: SVGProps<SVGSVGElement>) => (
-  <svg
-    width={480}
-    height={465}
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    {...props}
-  >
+  <svg width={'100%'} height={465} fill="none" viewBox="0 0 480 465" {...props}>
     <g clipPath="url(#a)">
       <path
         d="M261.456 441.224c120.698 0 218.544-11.115 218.544-24.826 0-13.712-97.846-24.827-218.544-24.827-120.699 0-218.544 11.115-218.544 24.827 0 13.711 97.845 24.826 218.544 24.826Z"

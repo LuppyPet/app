@@ -2,6 +2,7 @@
 import * as Label from '@radix-ui/react-label'
 import React, { useState } from 'react'
 import { UseFormRegisterReturn } from 'react-hook-form'
+import KeyIcon from '../../assets/KeyIcon'
 import { InputContainer } from './styles'
 
 interface IInputProps {
@@ -46,10 +47,8 @@ export const Input = ({
           {/* <AccessibleIcon.AccessibleIcon
             label={isPasswordHidden ? 'Exibir senha' : 'Esconder senha'}
           > */}
-          <img
-            alt={isPasswordHidden ? 'Exibir senha' : 'Esconder senha'}
-            className="eye-img"
-          />
+
+          <KeyIcon />
           {/* </AccessibleIcon.AccessibleIcon> */}
         </button>
       )}
