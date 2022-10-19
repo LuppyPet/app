@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import LuppyLogo from '../../assets/LuppyLogo'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 import { LeftLoginContainer } from '../../components/LeftLoginContainer'
+import { api } from '../../services/api'
 import {
   // BottomText,
   ForgotMyPasswordText,
@@ -42,13 +45,37 @@ export function Home(): JSX.Element {
     }
   }, [currentPage, numberOfPages, setCurrentPage])
 
+
+  const navigate = useNavigate()
+
   const onSubmit = async ({ username, password }: IFormInputs) => {
     try {
-      console.log(username, password, 'login')
+
+      console.log('data')
+
+      const response = await api.post("/sessions", {
+        email: username,
+        password
+      })
+
+      console.log(response.data)
+
       resetField('password')
+      resetField('username')
+
+
+
+      if (response.status === 200) {
+
+        navigate('/dashboard')
+        toast.success("Login efetuado com sucesso")
+      }
+
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e)
+      toast.error("Ocorreu um erro ao efetuar login, cheque suas informações")
+
     }
   }
 
@@ -103,7 +130,7 @@ export function Home(): JSX.Element {
             type="password"
           />
           <ForgotMyPasswordText>Esqueci minha senha!</ForgotMyPasswordText>
-          <Button isPink>Login</Button>
+          <Button isPink type="submit">Login</Button>
         </div>
         <RegisterNowText isPink>
           <span>Ainda não é cadastrado?</span>
