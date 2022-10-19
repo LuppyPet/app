@@ -13,7 +13,7 @@ import {
   HomeContainer,
   LoginSide,
   RegisterNowText,
-  TwoColoredText,
+  TwoColoredText
 } from './styles'
 
 interface IFormInputs {
@@ -45,37 +45,26 @@ export function Home(): JSX.Element {
     }
   }, [currentPage, numberOfPages, setCurrentPage])
 
-
   const navigate = useNavigate()
 
   const onSubmit = async ({ username, password }: IFormInputs) => {
     try {
-
-      console.log('data')
-
-      const response = await api.post("/sessions", {
+      const response = await api.post('/sessions', {
         email: username,
-        password
+        password,
       })
-
-      console.log(response.data)
 
       resetField('password')
       resetField('username')
 
-
-
       if (response.status === 200) {
-
         navigate('/dashboard')
-        toast.success("Login efetuado com sucesso")
+        toast.success('Login efetuado com sucesso')
       }
-
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e)
-      toast.error("Ocorreu um erro ao efetuar login, cheque suas informações")
-
+      toast.error('Ocorreu um erro ao efetuar login, cheque suas informações')
     }
   }
 
@@ -130,7 +119,9 @@ export function Home(): JSX.Element {
             type="password"
           />
           <ForgotMyPasswordText>Esqueci minha senha!</ForgotMyPasswordText>
-          <Button isPink type="submit">Login</Button>
+          <Button isPink type="submit">
+            Login
+          </Button>
         </div>
         <RegisterNowText isPink>
           <span>Ainda não é cadastrado?</span>

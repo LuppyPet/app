@@ -4,7 +4,7 @@ import {
   InnerColoredContainer,
   SideColoredContainer,
   SideTitleStyle,
-  SubtitleStyle,
+  SubtitleStyle
 } from './styles'
 
 interface ILeftLoginContainerProps {
