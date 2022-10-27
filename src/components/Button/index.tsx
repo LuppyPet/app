@@ -11,5 +11,5 @@ export function Button({
   color = 'primary',
   children,
 }: ButtonProps): JSX.Element {
-  return <ButtonContainer>{children}</ButtonContainer>
+  return <ButtonContainer backgroundColor={color}>{children}</ButtonContainer>
 }

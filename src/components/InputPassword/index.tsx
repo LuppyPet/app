@@ -6,10 +6,14 @@ import { Input } from '../Input'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string
+  hasForgotPasswordButton?: boolean
 }
 
 export const InputPassword = forwardRef<HTMLInputElement, InputProps>(
-  function InputPassword({ label, ...rest }, ref): JSX.Element {
+  function InputPassword(
+    { label, hasForgotPasswordButton = true, ...rest },
+    ref,
+  ): JSX.Element {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false)
     return (
       <InputPasswordContainer>
@@ -21,7 +25,11 @@ export const InputPassword = forwardRef<HTMLInputElement, InputProps>(
           {...rest}
         ></Input>
         <div className="password-buttons-wrapper">
-          <button type="button">esqueci minha senha</button>
+          {hasForgotPasswordButton ? (
+            <button type="button">esqueci minha senha</button>
+          ) : (
+            <div></div>
+          )}
           <button
             type="button"
             onClick={() => setIsPasswordVisible(!isPasswordVisible)}

@@ -1,7 +1,6 @@
 import { styled } from '../../styles'
 
 export const ButtonContainer = styled('button', {
-  backgroundColor: '$primary',
   border: 'none',
   borderRadius: 8,
   height: 80,
@@ -9,4 +8,15 @@ export const ButtonContainer = styled('button', {
   fontSize: '$xl',
   color: '$white',
   cursor: 'pointer',
+
+  variants: {
+    backgroundColor: {
+      primary: {
+        backgroundColor: '$primary',
+      },
+      secondary: {
+        backgroundColor: '$secondary',
+      },
+    },
+  },
 })
