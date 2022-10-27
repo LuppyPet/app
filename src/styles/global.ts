@@ -1,49 +1,33 @@
-import { createGlobalStyle } from 'styled-components'
+import { globalCss } from '.'
 
-export const GlobalStyle = createGlobalStyle`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    outline: 0;
-  }
+export const globalStyles = globalCss({
+  '*': {
+    margin: 0,
+    padding: 0,
+    boxSizing: 'border-box',
+  },
 
-  button, p, span, h1, h2, h3, h4, h5, h6, nav, div, input, textarea {
-    font-family: Montserrat, sans-serif;
-  }
+  body: {
+    backgroundColor: '$background',
+    color: '$gray900',
+    '-webkit-font-smoothing': 'antialiased',
+    'scroll-behavior': 'smooth',
+  },
 
-  body {
-    -webkit-font-smoothing: antialiased;
-    background-color: #fff;
+  'body, input, textarea, button': {
+    fontFamily: 'Montserrat',
+    fontWeight: '400',
+  },
 
-    font-family: Montserrat, sans-serif;
-    font-weight: 500;
-    color: #606060;
+  '@media(max-width: 768px)': {
+    html: {
+      fontSize: '77.5%;',
+    },
+  },
 
-  }
-
-  button {
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  html {
-    font-size: 87.5%;
-  }
-
-  @media(max-width: 1024px) {
-    html {
-      font-size: 77.5%;
-    }
-  }
-`
+  '@media(max-width: 500px)': {
+    html: {
+      fontSize: '62.5%;',
+    },
+  },
+})

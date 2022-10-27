@@ -1,57 +1,22 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import * as Label from '@radix-ui/react-label'
-import React, { useState } from 'react'
-import { UseFormRegisterReturn } from 'react-hook-form'
-import KeyIcon from '../../assets/KeyIcon'
-import { InputContainer } from './styles'
+import { forwardRef, InputHTMLAttributes, ReactNode } from 'react'
+import { InputContainer, InputWrapper } from './styles'
 
-interface IInputProps {
-  name: string
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string
-  type?: 'default' | 'password'
-  registerField?: UseFormRegisterReturn
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  icon?: ReactNode
 }
 
-export const Input = ({
-  name,
-  label,
-  type = 'default',
-  registerField,
-  onChange,
-}: IInputProps) => {
-  const [isPasswordHidden, setIsPasswordHidden] = useState<boolean>(
-    type === 'password',
-  )
-
+export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
+  { label, type = 'text', icon, ...rest },
+  ref,
+): JSX.Element {
   return (
     <InputContainer>
-      <Label.Root htmlFor={name}>{label}</Label.Root>
-      <input
-        {...registerField}
-        type={isPasswordHidden ? 'password' : 'text'}
-        name={name}
-        onChange={(event) => {
-          if (onChange) onChange(event)
-        }}
-        // maxLength expects a number instead of a string, but in mobile only works with string
-        // @ts-ignore
-        maxLength={type === 'school_code' ? '6' : 99}
-      />
-      {type === 'password' && (
-        <button
-          type="button"
-          onClick={() => setIsPasswordHidden(!isPasswordHidden)}
-          tabIndex={0}
-        >
-          {/* <AccessibleIcon.AccessibleIcon
-            label={isPasswordHidden ? 'Exibir senha' : 'Esconder senha'}
-          > */}
-
-          <KeyIcon />
-          {/* </AccessibleIcon.AccessibleIcon> */}
-        </button>
-      )}
+      <label htmlFor="email">{label}</label>
+      <InputWrapper>
+        <input ref={ref} type={type} {...rest} />
+        {icon}
+      </InputWrapper>
     </InputContainer>
   )
-}
+})

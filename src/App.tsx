@@ -1,27 +1,27 @@
-import { Home } from './pages/Home'
-import { GlobalStyle } from './styles/global'
+import { Login } from './pages/Login'
 
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css'
 
-
-import {createBrowserRouter, RouterProvider, Route} from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
+import { globalStyles } from './styles/global'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home></Home>
+    element: <Login></Login>,
   },
   {
     path: '/dashboard',
-    element: 'VOCÊ ESTÁ LOGADO'
-  }
+    element: 'VOCÊ ESTÁ LOGADO',
+  },
 ])
+
+globalStyles()
 
 export function App() {
   return (
     <>
-      <GlobalStyle />
       <RouterProvider router={router}></RouterProvider>
       <ToastContainer></ToastContainer>
     </>
