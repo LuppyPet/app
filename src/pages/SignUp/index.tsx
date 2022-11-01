@@ -5,28 +5,78 @@ import luppyImage from '../../assets/luppy.svg'
 import { Button } from '../../components/Button'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { LocationForm } from './components/LocationForm'
+import { useState } from 'react'
+import { OngForm } from './components/OngForm'
 import { PersonalForm } from './components/PersonalForm'
+import { toast } from 'react-toastify'
+import { api } from '../../services/api'
+
+export enum TypeOfAnimals {
+  // eslint-disable-next-line no-unused-vars
+  CATS = 'CATS',
+  // eslint-disable-next-line no-unused-vars
+  DOGS = 'DOGS',
+  // eslint-disable-next-line no-unused-vars
+  OTHERS = 'OTHERS',
+}
 
 export interface SignUpFormInputsProps {
-  type: 'user' | 'ong'
+  type: 'user' | 'ong' | 'vet'
   state: string
   city: string
-  ong: string
-  cnpj: string
-  animals: string[]
+  organization: string
+  document: string
+  help: TypeOfAnimals[]
   name: string
   email: string
   password: string
 }
 
+const formSteps = ['Location', 'Ong', 'Personal']
+
 export function SignUp(): JSX.Element {
   const navigate = useNavigate()
+  const [currentStep, setCurrentStep] = useState(formSteps[0])
 
-  const { register } = useForm<SignUpFormInputsProps>({
-    shouldFocusError: true,
-    shouldUseNativeValidation: true,
-    criteriaMode: 'all',
-  })
+  const { register, watch, control, handleSubmit } =
+    useForm<SignUpFormInputsProps>({
+      shouldFocusError: true,
+      shouldUseNativeValidation: true,
+      criteriaMode: 'all',
+    })
+
+  const userType = watch('type')
+
+  async function onSubmit({
+    name,
+    password,
+    email,
+    city,
+    document,
+    help,
+    organization,
+    state,
+    type,
+  }: SignUpFormInputsProps) {
+    try {
+      await api.post('/user', {
+        name,
+        email,
+        password,
+        cityId: city,
+        type,
+        document,
+        organization,
+        help,
+      })
+    } catch (error) {
+      toast.error(
+        'Ocorreu um erro ao se cadastrar, mande um e-mail para "help@luppy.pet"',
+      )
+    }
+  }
+
   return (
     <SignUpContainer>
       <SignUpLeftSide>
@@ -43,10 +93,30 @@ export function SignUp(): JSX.Element {
             <strong>Seus pets </strong>
             <strong>mais seguros</strong>
           </h1>
-          <form>
-            <PersonalForm register={register}></PersonalForm>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            {currentStep === formSteps[0] ? (
+              <LocationForm control={control} watch={watch}></LocationForm>
+            ) : currentStep === formSteps[1] ? (
+              <OngForm register={register} control={control}></OngForm>
+            ) : (
+              <PersonalForm register={register}></PersonalForm>
+            )}
 
-            <Button type="submit" color="secondary">
+            <Button
+              type={currentStep === formSteps[2] ? 'submit' : 'button'}
+              onClick={() => {
+                if (currentStep === formSteps[0]) {
+                  if (userType === 'ong') {
+                    setCurrentStep(formSteps[1])
+                  } else {
+                    setCurrentStep(formSteps[2])
+                  }
+                } else if (currentStep === formSteps[1]) {
+                  setCurrentStep(formSteps[2])
+                }
+              }}
+              color="secondary"
+            >
               Avançar
             </Button>
           </form>

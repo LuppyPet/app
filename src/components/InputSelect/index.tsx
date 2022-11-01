@@ -1,6 +1,6 @@
-import { forwardRef, InputHTMLAttributes } from 'react'
+import { InputHTMLAttributes } from 'react'
+import { Control, Controller } from 'react-hook-form'
 import Select, {
-  Props,
   StylesConfig,
   ThemeConfig,
   OptionsOrGroups,
@@ -9,16 +9,23 @@ import Select, {
 import { InputSelectContainer } from './styles'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  control: Control<any>
+  name: string
   label: string
   color: '#F56076' | '#23B6E7'
   options: OptionsOrGroups<unknown, GroupBase<unknown>>
   isMulti?: boolean
 }
 
-export const InputSelect = forwardRef<Props, InputProps>(function InputSelect(
-  { label, color, options, type = 'text', isMulti = false, ...rest },
-  ref,
-): JSX.Element {
+export function InputSelect({
+  control,
+  name,
+  label,
+  color,
+  options,
+  type = 'text',
+  isMulti = false,
+}: InputProps): JSX.Element {
   const theme: ThemeConfig = (theme) => ({
     ...theme,
     borderRadius: 8,
@@ -46,15 +53,32 @@ export const InputSelect = forwardRef<Props, InputProps>(function InputSelect(
   return (
     <InputSelectContainer>
       <label htmlFor="">{label}</label>
-      <Select
-        //  @ts-ignore
-        ref={ref}
-        styles={colorStyles}
-        theme={theme}
-        options={options}
-        isMulti={isMulti}
-        {...rest}
-      />
+      <Controller
+        render={({ field: { name, onBlur, onChange, ref, value } }) => (
+          <Select
+            ref={ref}
+            styles={colorStyles}
+            theme={theme}
+            options={options}
+            isMulti={isMulti}
+            onChange={(event) => {
+              if (Array.isArray(event)) {
+                onChange(event.map((item) => item.value))
+              } else {
+                // @ts-ignore
+                onChange(event.value)
+              }
+            }}
+            onBlur={onBlur}
+            defaultValue={options[0]}
+            name={name}
+            // @ts-ignore
+            value={options.find((item) => item.value === value)}
+          />
+        )}
+        name={name}
+        control={control}
+      ></Controller>
     </InputSelectContainer>
   )
-})
+}

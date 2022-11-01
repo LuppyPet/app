@@ -1,27 +1,28 @@
-import { UseFormRegister } from 'react-hook-form'
+import { Control, UseFormRegister } from 'react-hook-form'
 import { Input } from '../../../../components/Input'
 
 import { Briefcase, Star } from 'phosphor-react'
-import { SignUpFormInputsProps } from '../..'
+import { SignUpFormInputsProps, TypeOfAnimals } from '../..'
 import { InputSelect } from '../../../../components/InputSelect'
 
 interface OngFormProps {
   register: UseFormRegister<SignUpFormInputsProps>
+  control: Control<any>
 }
 
-export function OngForm({ register }: OngFormProps): JSX.Element {
+export function OngForm({ register, control }: OngFormProps): JSX.Element {
   return (
     <>
       <Input
         label="Nome da ONG"
         icon={<Star size={24} weight="thin" />}
-        {...register('ong', { required: true })}
+        {...register('organization', { required: true })}
       ></Input>
 
       <Input
         label="CNPJ"
         icon={<Briefcase size={24} weight="thin" />}
-        {...register('cnpj', { required: true })}
+        {...register('document', { required: true })}
       ></Input>
 
       <InputSelect
@@ -31,17 +32,19 @@ export function OngForm({ register }: OngFormProps): JSX.Element {
         options={[
           {
             label: 'Gatos',
-            value: '0',
+            value: TypeOfAnimals.CATS,
           },
           {
             label: 'Cachorros',
-            value: '1',
+            value: TypeOfAnimals.DOGS,
           },
           {
             label: 'Outros',
-            value: '2',
+            value: TypeOfAnimals.OTHERS,
           },
         ]}
+        control={control}
+        name="help"
       ></InputSelect>
     </>
   )
