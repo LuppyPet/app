@@ -1,6 +1,6 @@
 import { styled } from '../../styles'
 
-export const LoginContainer = styled('main', {
+export const SignUpContainer = styled('main', {
   height: '100vh',
   display: 'flex',
   alignItems: 'center',
@@ -31,12 +31,12 @@ export const LoginContainer = styled('main', {
   },
 })
 
-export const LoginLeftSide = styled('div', {
+export const SignUpLeftSide = styled('div', {
   display: 'flex',
 
   justifyContent: 'center',
   gap: 48,
-  backgroundColor: '$secondary',
+  backgroundColor: '$primary',
   borderTopRightRadius: 64,
   borderBottomRightRadius: 64,
   boxShadow: 'rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px',
@@ -67,7 +67,7 @@ export const LoginLeftSide = styled('div', {
   },
 })
 
-export const LoginRightSide = styled('div', {
+export const SignUpRightSide = styled('div', {
   display: 'flex',
 
   justifyContent: 'space-between',

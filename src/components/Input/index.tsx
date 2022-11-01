@@ -7,14 +7,14 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
-  { label, type = 'text', icon, ...rest },
+  { label, type = 'text', name, icon, ...rest },
   ref,
 ): JSX.Element {
   return (
     <InputContainer>
-      <label htmlFor="email">{label}</label>
+      <label htmlFor={name}>{label}</label>
       <InputWrapper>
-        <input ref={ref} type={type} {...rest} />
+        <input ref={ref} type={type} name={name} {...rest} />
         {icon}
       </InputWrapper>
     </InputContainer>

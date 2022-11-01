@@ -73,7 +73,9 @@ export function Login(): JSX.Element {
 
         <p>
           Ainda não é cadastrado?{' '}
-          <button type="button">{'Comece agora :)'}</button>
+          <button type="button" onClick={() => navigate('/register')}>
+            {'Comece agora :)'}
+          </button>
         </p>
       </LoginRightSide>
     </LoginContainer>
