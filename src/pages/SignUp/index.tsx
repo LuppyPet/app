@@ -60,7 +60,7 @@ export function SignUp(): JSX.Element {
     type,
   }: SignUpFormInputsProps) {
     try {
-      await api.post('/user', {
+      const response = await api.post('/user', {
         name,
         email,
         password,
@@ -70,6 +70,10 @@ export function SignUp(): JSX.Element {
         organization,
         help,
       })
+      if (response.status === 200) {
+        navigate('/')
+        toast.success('Cadastro realizado com sucesso!')
+      }
     } catch (error) {
       toast.error(
         'Ocorreu um erro ao se cadastrar, mande um e-mail para "help@luppy.pet"',
