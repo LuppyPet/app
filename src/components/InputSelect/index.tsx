@@ -15,6 +15,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   color: '#F56076' | '#23B6E7'
   options: OptionsOrGroups<unknown, GroupBase<unknown>>
   isMulti?: boolean
+  isLoading?: boolean
 }
 
 export function InputSelect({
@@ -25,6 +26,8 @@ export function InputSelect({
   options,
   type = 'text',
   isMulti = false,
+  isLoading = false,
+  defaultValue,
 }: InputProps): JSX.Element {
   const theme: ThemeConfig = (theme) => ({
     ...theme,
@@ -70,10 +73,11 @@ export function InputSelect({
               }
             }}
             onBlur={onBlur}
-            defaultValue={options[0]}
+            defaultValue={defaultValue || options[0]}
             name={name}
             // @ts-ignore
             value={options.find((item) => item.value === value)}
+            isLoading={isLoading}
           />
         )}
         name={name}

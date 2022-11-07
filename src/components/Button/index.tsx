@@ -6,6 +6,7 @@ interface ButtonProps {
   children: ReactNode
   type: 'button' | 'submit'
   onClick?: () => void
+  isDisabled?: boolean
 }
 
 export function Button({
@@ -13,9 +14,15 @@ export function Button({
   children,
   type,
   onClick,
+  isDisabled = false,
 }: ButtonProps): JSX.Element {
   return (
-    <ButtonContainer backgroundColor={color} type={type} onClick={onClick}>
+    <ButtonContainer
+      backgroundColor={color}
+      type={type}
+      onClick={onClick}
+      disabled={isDisabled}
+    >
       {children}
     </ButtonContainer>
   )

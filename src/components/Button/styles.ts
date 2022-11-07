@@ -9,6 +9,11 @@ export const ButtonContainer = styled('button', {
   color: '$white',
   cursor: 'pointer',
 
+  '&:disabled': {
+    backgroundColor: '$gray300',
+    cursor: 'not-allowed',
+  },
+
   variants: {
     backgroundColor: {
       primary: {

@@ -100,6 +100,7 @@ export function LocationForm({
         options={states}
         control={control}
         name="state"
+        isLoading={states.length === 1}
       ></InputSelect>
 
       <InputSelect
@@ -108,6 +109,7 @@ export function LocationForm({
         options={cities}
         control={control}
         name="city"
+        isLoading={cities.length === 1}
       ></InputSelect>
     </>
   )

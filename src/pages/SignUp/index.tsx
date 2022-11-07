@@ -37,7 +37,7 @@ const formSteps = ['Location', 'Ong', 'Personal']
 
 export function SignUp(): JSX.Element {
   const navigate = useNavigate()
-  const [currentStep, setCurrentStep] = useState(formSteps[0])
+  const [currentStep, setCurrentStep] = useState(formSteps[2])
 
   const { register, watch, control, handleSubmit } =
     useForm<SignUpFormInputsProps>({
@@ -45,6 +45,10 @@ export function SignUp(): JSX.Element {
       shouldUseNativeValidation: true,
       criteriaMode: 'all',
     })
+
+  const isLocationFormValid = currentStep === formSteps[0] && (watch('state') !== undefined && watch('state') !== '0') && (watch('city') !== undefined && watch('city') !== '0') ;
+  const isOngFormValid = currentStep === formSteps[1] && watch('organization') !== '' && watch('document') !== '' && (watch('help') !== undefined && watch('help')?.length > 0 )
+  const isPersonalFormValid = currentStep === formSteps[2] && (watch('name') !== '' && watch('name') !== undefined) && (watch('email') !== '' && watch('email') !== undefined) && (watch('password') !== '' && watch('password') !== undefined)
 
   const userType = watch('type')
 
@@ -120,6 +124,8 @@ export function SignUp(): JSX.Element {
                 }
               }}
               color="secondary"
+              isDisabled={currentStep === formSteps[0] ? !isLocationFormValid : currentStep === formSteps[1] ? !isOngFormValid : !isPersonalFormValid}
+
             >
               Avançar
             </Button>

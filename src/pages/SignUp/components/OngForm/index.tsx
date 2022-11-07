@@ -29,6 +29,7 @@ export function OngForm({ register, control }: OngFormProps): JSX.Element {
         label="Quem você ajuda?"
         color="#F56076"
         isMulti
+        defaultValue={'0'}
         options={[
           {
             label: 'Gatos',
