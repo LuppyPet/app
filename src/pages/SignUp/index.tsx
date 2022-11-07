@@ -37,7 +37,7 @@ const formSteps = ['Location', 'Ong', 'Personal']
 
 export function SignUp(): JSX.Element {
   const navigate = useNavigate()
-  const [currentStep, setCurrentStep] = useState(formSteps[2])
+  const [currentStep, setCurrentStep] = useState(formSteps[0])
 
   const { register, watch, control, handleSubmit } =
     useForm<SignUpFormInputsProps>({
