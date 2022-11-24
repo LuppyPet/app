@@ -7,9 +7,10 @@ import { Envelope } from 'phosphor-react'
 import { InputPassword } from '../../components/InputPassword'
 import { useForm } from 'react-hook-form'
 import { Button } from '../../components/Button'
-import { api } from '../../services/api'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { AuthContext } from '../../contexts/AuthContext'
 
 interface FormInputsProps {
   email: string
@@ -18,6 +19,7 @@ interface FormInputsProps {
 
 export function Login(): JSX.Element {
   const navigate = useNavigate()
+  const { signIn } = useContext(AuthContext)
 
   const { register, handleSubmit } = useForm<FormInputsProps>({
     shouldFocusError: true,
@@ -27,16 +29,10 @@ export function Login(): JSX.Element {
 
   async function onSubmit({ email, password }: FormInputsProps) {
     try {
-      const response = await api.post('/sessions', {
-        email,
-        password,
-      })
-
-      if (response.status === 200) {
-        navigate('/dashboard')
-        toast.success('Login efetuado com sucesso')
-      }
+      await signIn({ email, password })
+      toast.success('Login efetuado com sucesso')
     } catch (error) {
+      console.log(error)
       toast.error('Ocorreu um erro ao efetuar login, cheque suas informações')
     }
   }

@@ -1,17 +1,20 @@
 import 'react-toastify/dist/ReactToastify.css'
 
-import { RouterProvider } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { globalStyles } from './styles/global'
-import { routes } from './routes'
+import { Routes } from './routes'
+import { AuthProvider } from './contexts/AuthContext'
+import { BrowserRouter } from 'react-router-dom'
 
 globalStyles()
 
 export function App() {
   return (
-    <>
-      <RouterProvider router={routes}></RouterProvider>
-      <ToastContainer></ToastContainer>
-    </>
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes></Routes>
+        <ToastContainer></ToastContainer>
+      </AuthProvider>
+    </BrowserRouter>
   )
 }
