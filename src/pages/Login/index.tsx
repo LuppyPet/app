@@ -33,7 +33,7 @@ export function Login(): JSX.Element {
       toast.success('Login efetuado com sucesso')
     } catch (error) {
       console.log(error)
-      toast.error('Ocorreu um erro ao efetuar login, cheque suas informações')
+      toast.error('Ocorreu um erro ao efetuar login, cheque suas credenciais')
     }
   }
   return (

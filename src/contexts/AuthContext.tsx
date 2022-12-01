@@ -6,7 +6,8 @@ import { redirect } from 'react-router-dom'
 
 type User = {
   email: string
-  // name: string
+  name?: string
+  id?: string
   // createdAt: Date
   // updatedAt: Date
 }
@@ -62,12 +63,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const { 'luppy.token': token } = parseCookies()
 
     if (token) {
+      api.defaults.headers.Authorization = `Bearer ${token}`
       api
-        .get('/me')
+        .get('/user/me')
         .then((response) => {
-          const { email } = response.data
-
-          setUser({ email })
+          const { email, name, id } = response.data
+          setUser({ email, name, id })
         })
         .catch(() => {
           setUser({} as User)
@@ -77,34 +78,30 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, [])
 
   async function signIn({ email, password }: SignInCredentials) {
-    try {
-      const response = await api.post('sessions', {
-        email,
-        password,
-      })
+    const response = await api.post('sessions', {
+      email,
+      password,
+    })
 
-      const { token, refreshToken } = response.data
+    const { token, refreshToken } = response.data
 
-      setCookie(undefined, 'luppy.token', token, {
-        maxAge: 60 * 60 * 24 * 30, // 30 days
-        path: '/',
-      })
+    setCookie(undefined, 'luppy.token', token, {
+      maxAge: 60 * 60 * 24 * 30, // 30 days
+      path: '/',
+    })
 
-      setCookie(undefined, 'luppy.refreshToken', refreshToken, {
-        maxAge: 60 * 60 * 24 * 30, // 30 days
-        path: '/',
-      })
+    setCookie(undefined, 'luppy.refreshToken', refreshToken, {
+      maxAge: 60 * 60 * 24 * 30, // 30 days
+      path: '/',
+    })
 
-      setUser({
-        email,
-      })
+    setUser({
+      email,
+    })
 
-      api.defaults.headers.Authorization = `Bearer ${token}`
+    api.defaults.headers.Authorization = `Bearer ${token}`
 
-      redirect('/dashboard')
-    } catch (err) {
-      console.log(err)
-    }
+    redirect('/dashboard')
   }
 
   return (
