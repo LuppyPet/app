@@ -11,6 +11,7 @@ import { OngForm } from './components/OngForm'
 import { PersonalForm } from './components/PersonalForm'
 import { toast } from 'react-toastify'
 import { api } from '../../services/api'
+import { AxiosError } from 'axios'
 
 export enum TypeOfAnimals {
   // eslint-disable-next-line no-unused-vars
@@ -96,9 +97,16 @@ export function SignUp(): JSX.Element {
         toast.success('Cadastro realizado com sucesso!')
       }
     } catch (error) {
-      toast.error(
-        'Ocorreu um erro ao se cadastrar, mande um e-mail para "help@luppy.pet"',
-      )
+      if (
+        error instanceof AxiosError &&
+        error?.response?.data.code === 'already.exists'
+      ) {
+        toast.error('E-mail já cadastrado!')
+      } else {
+        toast.error(
+          'Ocorreu um erro ao se cadastrar, mande um e-mail para "help@luppy.pet"',
+        )
+      }
     }
   }
 
