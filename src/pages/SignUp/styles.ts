@@ -87,7 +87,7 @@ export const SignUpRightSide = styled('div', {
     maxWidth: 180,
   },
   h1: {
-    marginBottom: 48,
+    marginBottom: 32,
 
     'strong:first-child': {
       color: '$primary',
