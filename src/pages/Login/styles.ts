@@ -102,7 +102,7 @@ export const LoginRightSide = styled('div', {
   form: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '2.5rem',
+    gap: 24,
     width: '100%',
   },
 

@@ -100,7 +100,7 @@ export const SignUpRightSide = styled('div', {
   form: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '2rem',
+    gap: 24,
     width: '100%',
   },
 
