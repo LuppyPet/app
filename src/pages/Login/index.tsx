@@ -41,8 +41,11 @@ export function Login(): JSX.Element {
       <LoginLeftSide>
         <img src={womanWithCatImage} alt="Woman sitting with a cat" />
         <div>
-          <h1>Lorem ipsum dp</h1>
-          <p>Lorem ipsum dolor sit amete testando o tamanho</p>
+          <h1>Saúde em primeiro lugar</h1>
+          <p>
+            O <strong>Luppy</strong> ajuda a sua ONG a rastrear animais
+            infectados
+          </p>
         </div>
       </LoginLeftSide>
       <LoginRightSide>

@@ -46,9 +46,26 @@ export function SignUp(): JSX.Element {
       criteriaMode: 'all',
     })
 
-  const isLocationFormValid = currentStep === formSteps[0] && (watch('state') !== undefined && watch('state') !== '0') && (watch('city') !== undefined && watch('city') !== '0') ;
-  const isOngFormValid = currentStep === formSteps[1] && watch('organization') !== '' && watch('document') !== '' && (watch('help') !== undefined && watch('help')?.length > 0 )
-  const isPersonalFormValid = currentStep === formSteps[2] && (watch('name') !== '' && watch('name') !== undefined) && (watch('email') !== '' && watch('email') !== undefined) && (watch('password') !== '' && watch('password') !== undefined)
+  const isLocationFormValid =
+    currentStep === formSteps[0] &&
+    watch('state') !== undefined &&
+    watch('state') !== '0' &&
+    watch('city') !== undefined &&
+    watch('city') !== '0'
+  const isOngFormValid =
+    currentStep === formSteps[1] &&
+    watch('organization') !== '' &&
+    watch('document') !== '' &&
+    watch('help') !== undefined &&
+    watch('help')?.length > 0
+  const isPersonalFormValid =
+    currentStep === formSteps[2] &&
+    watch('name') !== '' &&
+    watch('name') !== undefined &&
+    watch('email') !== '' &&
+    watch('email') !== undefined &&
+    watch('password') !== '' &&
+    watch('password') !== undefined
 
   const userType = watch('type')
 
@@ -90,8 +107,11 @@ export function SignUp(): JSX.Element {
       <SignUpLeftSide>
         <img src={dogWalking} alt="Man walking with a dog" />
         <div>
-          <h1>Lorem ipsum dp</h1>
-          <p>Lorem ipsum dolor sit amete testando o tamanho</p>
+          <h1>Prontos para um passeio?</h1>
+          <p>
+            O <strong>Luppy</strong> ajuda seus pets a ficarem mais seguros ao
+            passear
+          </p>
         </div>
       </SignUpLeftSide>
       <SignUpRightSide>
@@ -124,8 +144,13 @@ export function SignUp(): JSX.Element {
                 }
               }}
               color="secondary"
-              isDisabled={currentStep === formSteps[0] ? !isLocationFormValid : currentStep === formSteps[1] ? !isOngFormValid : !isPersonalFormValid}
-
+              isDisabled={
+                currentStep === formSteps[0]
+                  ? !isLocationFormValid
+                  : currentStep === formSteps[1]
+                  ? !isOngFormValid
+                  : !isPersonalFormValid
+              }
             >
               Avançar
             </Button>

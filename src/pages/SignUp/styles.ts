@@ -55,6 +55,7 @@ export const SignUpLeftSide = styled('div', {
 
     h1: {
       fontSize: '$2xl',
+      textAlign: 'center',
     },
     p: {
       fontSize: '$xl',
