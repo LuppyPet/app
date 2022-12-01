@@ -27,9 +27,9 @@ export const Routes: React.FC = () => {
             element={
               <>
                 <h1>VC ESTÁ LOGADO</h1>{' '}
-                <button type="button" onClick={signOut}>
+                {/* <button type="button" onClick={signOut}>
                   SAIR
-                </button>
+                </button> */}
               </>
             }
           />
