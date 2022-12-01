@@ -73,7 +73,7 @@ export const SignUpRightSide = styled('div', {
 
   justifyContent: 'space-between',
 
-  gap: 64,
+  gap: 32,
 
   '& > div': {
     display: 'flex',
@@ -83,10 +83,11 @@ export const SignUpRightSide = styled('div', {
     maxWidth: 400,
   },
   img: {
-    marginBottom: 48,
+    marginBottom: 32,
+    maxWidth: 180,
   },
   h1: {
-    marginBottom: 64,
+    marginBottom: 48,
 
     'strong:first-child': {
       color: '$primary',
@@ -99,7 +100,7 @@ export const SignUpRightSide = styled('div', {
   form: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '2.5rem',
+    gap: '2rem',
     width: '100%',
   },
 

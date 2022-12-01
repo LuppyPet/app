@@ -73,7 +73,9 @@ export const LoginRightSide = styled('div', {
 
   justifyContent: 'space-between',
 
-  gap: 64,
+  gap: 32,
+
+  maxHeight: '100%',
 
   '& > div': {
     display: 'flex',
@@ -84,6 +86,7 @@ export const LoginRightSide = styled('div', {
   },
   img: {
     marginBottom: 48,
+    maxWidth: 180,
   },
   h1: {
     marginBottom: 64,
