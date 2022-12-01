@@ -15,7 +15,7 @@ const PrivateRoute = () => {
 }
 
 export const Routes: React.FC = () => {
-  const { isAuthenticated, signOut } = useContext(AuthContext)
+  const { isAuthenticated } = useContext(AuthContext)
 
   return (
     <ReactRouterRoutes>
